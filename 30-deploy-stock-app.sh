@@ -1,1 +1,0 @@
-kubectl apply -f _30-deploy-stock-app/namespaces.yaml
