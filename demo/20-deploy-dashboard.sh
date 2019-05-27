@@ -1,3 +1,4 @@
+#! /bin/sh
 source ./common.sh
 
 b_log "Deploying the dashboard"

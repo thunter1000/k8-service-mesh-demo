@@ -1,3 +1,4 @@
+#! /bin/sh
 set -e
 
 trap "kill 0" EXIT

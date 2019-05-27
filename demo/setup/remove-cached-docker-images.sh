@@ -1,5 +1,4 @@
 #! /bin/sh
-
 source ../common.sh
 
 b_log "Removing docker images"
