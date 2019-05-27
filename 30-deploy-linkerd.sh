@@ -1,5 +1,7 @@
+source ./common.sh
+
 function finish {
-  echo $'\n➡️ Remove emojivoto, linkerd namespaces\n'
+  b_log "Remove emojivoto, linkerd namespaces"
   kubectl delete namespace emojivoto &
   kubectl delete namespace linkerd &
 
@@ -7,26 +9,41 @@ function finish {
 }
 trap finish EXIT
 
-echo $'\n➡️ Installing linkerd\n'
-linkerd install | kubectl apply -f -
+b_log "Installing linkerd"
+(
+  show_cmds;
+  linkerd install | kubectl apply -f -;
+)
 
-echo $'\n➡️ Checking linkerd is installed correctly\n'
-linkerd check
+b_log "Checking linkerd is installed correctly"
+(
+  show_cmds;
+  linkerd check;
+)
 
-echo $'\n➡️ Installing demo application\n'
+b_log "Installing demo application"
+(
+  show_cmds;
+  linkerd inject _30-deploy-linkerd/linkerd-demo-app.yml | kubectl apply -f -;
+)
 
-linkerd inject _30-deploy-linkerd/linkerd-demo-app.yml | kubectl apply -f -
+b_log "Checking deployment of example application"
+(
+  show_cmds;
+  linkerd -n emojivoto check --proxy;
+)
 
-echo $'\n➡️ Checking deployment of example application\n'
+b_log "Binding port for example application"
+(
+  show_cmds;
+  kubectl -n emojivoto port-forward svc/web-svc 8080:80 &
+)
 
-linkerd -n emojivoto check --proxy
-
-echo $'\n➡️ Binding port for example application'
-
-kubectl -n emojivoto port-forward svc/web-svc 8080:80 &
-
-echo $'\n➡️ Starting dashboard\n'
-linkerd dashboard &
-python -m webbrowser "http://127.0.0.1:8080" &
-
-wait
+b_log "Starting dashboard"
+(
+  show_cmds;
+  linkerd dashboard &
+  show_kube_dashboard &
+  open_web_browser "http://127.0.0.1:8080" &
+  wait;
+)

@@ -1,5 +1,15 @@
-kind create cluster --config _10-create-cluster/kind-config.yaml
+source ./common.sh
 
-export KUBECONFIG="~/.kube/kind-config-kind"
+function finish {
+  kind delete cluster --name cluster > /dev/null &
 
-echo $'\n➡️ K8s cluster created kubernetes configuration set to ~/.kube/kind-config-kind\n'
+  sleep 1
+}
+trap finish EXIT
+
+# Used to demo cluster creation, not the cluster being used in the demo.
+
+(
+  show_cmds;
+  kind create cluster --config _10-create-cluster/kind-config.yaml --name cluster;
+)
