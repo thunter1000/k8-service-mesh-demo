@@ -1,3 +1,4 @@
+gcr.io/istio-release/kubectl:master-latest-daily
 buoyantio/emojivoto-emoji-svc:v8
 buoyantio/emojivoto-voting-svc:v8
 buoyantio/emojivoto-web:v8
