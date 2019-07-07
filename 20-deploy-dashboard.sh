@@ -4,7 +4,7 @@ source ./common.sh
 b_log "Deploying the dashboard"
 (
   show_cmds;
-  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml;
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml;
 )
 
 b_log "Patching the dashboard"
