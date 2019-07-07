@@ -15,7 +15,7 @@ b_log "Configure istio service accounts"
 (
   show_cmds;
   helm template "$script_dir/_50-deploy-istio/istio-charts/istio-init" --name istio-init --namespace istio-system | kubectl apply -f -
-  kubectl wait --for=condition=complete job -n istio-system --all
+  kubectl wait --for=condition=complete job -n istio-system --all --timeout=30m
 )
 s_log "Istio service accounts created"
 
@@ -25,6 +25,6 @@ b_log "Deploy istio"
 (
   show_cmds;
   helm template "$script_dir/_50-deploy-istio/istio-charts/istio" --name istio --namespace istio-system | kubectl apply -f -
-  kubectl wait --for=condition=available deploy -n istio-system --all
+  kubectl wait --for=condition=available deploy -n istio-system --all --timeout=30m
 )
 s_log "Istio has been deployed to the cluster"
