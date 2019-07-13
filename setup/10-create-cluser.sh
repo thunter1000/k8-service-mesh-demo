@@ -1,11 +1,12 @@
-
-#! /bin/sh
-script_dir=$(dirname $0)
-source $script_dir/../common.sh
+#!/bin/sh
+source ../common.sh
 
 b_log "Creating cluster"
 
-kind create cluster --config $script_dir/kind-config.yaml
+kind create cluster --config kind-config.yaml || {
+  echo "Failed to create cluster"
+  exit 1
+}
 
 export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 
