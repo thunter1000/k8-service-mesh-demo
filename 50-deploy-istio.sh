@@ -32,3 +32,27 @@ b_log "Deploy istio"
   kubectl wait --for=condition=available deploy -n istio-system --all --timeout=30m
 )
 s_log "Istio has been deployed to the cluster"
+
+b_log "Deploy bookinfo example"
+(
+  show_cmds;
+  kubectl create ns bookinfo || true
+  kubectl label ns bookinfo istio-injection=enabled --overwrite
+  kubectl -n bookinfo apply -f "$script_dir/_50-deploy-istio/bookinfo/deploy.yaml"
+  kubectl -n bookinfo apply -f "$script_dir/_50-deploy-istio/bookinfo/gateway.yaml"
+)
+s_log "Bookinfo example deployed"
+
+b_log "Deploying Linkerd example (emojivoto)"
+(
+  show_cmds;
+  kubectl create ns emojivoto || true
+  kubectl label ns emojivoto istio-injection=enabled --overwrite
+  kubectl -n emojivoto apply -f "$script_dir/_30-deploy-demo-application/demo-app.yaml"
+)
+s_log "Linkerd (emojivoto) deployed."
+
+b_log "Wait for deployments"
+
+kubectl wait --for=condition=available deploy -n bookinfo --all --timeout=30m
+kubectl wait --for=condition=available deploy -n emojivoto --all --timeout=30m
