@@ -25,7 +25,7 @@ b_log "Checking linkerd is installed correctly"
 b_log "Installing demo application"
 (
   show_cmds;
-  linkerd inject _30-deploy-demo-application/demo-app.yml | kubectl apply -f -;
+  linkerd inject _30-deploy-demo-application/demo-app.yaml | kubectl apply -f -;
 )
 
 b_log "Checking deployment of example application"

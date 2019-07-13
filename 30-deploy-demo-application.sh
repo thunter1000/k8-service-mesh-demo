@@ -6,7 +6,7 @@ source "$script_dir/common.sh"
 b_log "Installing demo application"
 (
   show_cmds;
-  kubectl apply -f "$script_dir/_30-deploy-demo-application/demo-app.yml"
+  kubectl apply -f "$script_dir/_30-deploy-demo-application/demo-app.yaml"
 )
 
 s_log "Demo application deployed to the cluster."
