@@ -23,3 +23,5 @@ gcr.io/istio-release/mixer:master-latest-daily
 gcr.io/istio-release/pilot:master-latest-daily
 gcr.io/istio-release/proxyv2:master-latest-daily
 gcr.io/istio-release/sidecar_injector:master-latest-daily
+gcr.io/istio-release/sidecar_injector:master-latest-dailygcr.io/istio-release/citadel:master-latest-daily
+quay.io/kiali/kiali:v0.20
