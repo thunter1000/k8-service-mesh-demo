@@ -48,7 +48,7 @@ b_log "Deploying Linkerd example (emojivoto)"
   show_cmds;
   kubectl create ns emojivoto || true
   kubectl label ns emojivoto istio-injection=enabled --overwrite
-  kubectl -n emojivoto apply -f "$script_dir/_30-deploy-demo-application/demo-app.yaml"
+  kubectl -n emojivoto apply -f "$script_dir/_emojivoto/deploy-emojivoto.yaml"
 )
 s_log "Linkerd (emojivoto) deployed."
 
