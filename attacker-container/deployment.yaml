@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: attacker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: attacker
+  template:
+    metadata:
+      labels:
+        app: attacker
+    spec:
+      hostNetwork: true
+      containers:
+      - image: attacker-container:latest
+        imagePullPolicy: IfNotPresent
+        name: attacker
+        resources:
+          requests:
+            cpu: 100m
