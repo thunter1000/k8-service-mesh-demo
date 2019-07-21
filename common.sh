@@ -1,8 +1,6 @@
 #! /bin/sh
 set -e
 
-trap "kill 0" EXIT
-
 function b_log() {
   echo "
 ➡️  $1
