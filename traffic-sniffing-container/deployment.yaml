@@ -14,7 +14,7 @@ spec:
     spec:
       hostNetwork: true
       containers:
-      - image: attacker-container:latest
+      - image: traffic-sniffing-container:latest
         imagePullPolicy: IfNotPresent
         name: attacker
         resources:
