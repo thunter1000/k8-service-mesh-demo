@@ -15,14 +15,14 @@ b_log "Creating '$namespace' namespace"
 if [ -z $(docker image ls $dockerImage -q) ]
 then
   b_log "Building $dockerImage"
-  sh $script_dir/_30-traffic-sniffing-pod/build.sh
+  sh $script_dir/_30-traffic-sniffing/build.sh
   s_log "Built $dockerImage"
 fi
 
 b_log "Deploy traffic sniffing pod"
 (
   show_cmds;
-  kubectl -n $namespace apply -f $script_dir/_30-traffic-sniffing-pod/deployment.yaml
+  kubectl -n $namespace apply -f $script_dir/_30-traffic-sniffing/deployment.yaml
 )
 s_log "Traffic sniffing pod has been deployed to the cluster"
 
