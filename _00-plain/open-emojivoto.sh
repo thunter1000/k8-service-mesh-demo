@@ -1,7 +1,7 @@
 #! /bin/sh
 script_dir=$(dirname $0)
 source $script_dir/../common.sh
-source $script_dir/linkerd-common.sh
+source $script_dir/plain-common.sh
 
 b_log "Binding port and opening browser"
 (

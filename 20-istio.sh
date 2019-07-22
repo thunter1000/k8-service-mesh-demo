@@ -3,6 +3,7 @@
 script_dir=$(dirname $0)
 
 source "$script_dir/common.sh"
+source "$script_dir/_20-istio/istio-common.sh"
 
 b_log "Creating 'istio-system' namespace"
 (
@@ -36,23 +37,25 @@ s_log "Istio has been deployed to the cluster"
 b_log "Deploy bookinfo example"
 (
   show_cmds;
-  kubectl create ns bookinfo || true
-  kubectl label ns bookinfo istio-injection=enabled --overwrite
-  kubectl -n bookinfo apply -f "$script_dir/_20-istio/bookinfo/deploy.yaml"
-  kubectl -n bookinfo apply -f "$script_dir/_20-istio/bookinfo/gateway.yaml"
+  kubectl create ns $bookinfoNamespace || true
+  kubectl label ns $bookinfoNamespace istio-injection=enabled --overwrite
+  kubectl -n $bookinfoNamespace apply -f "$script_dir/_20-istio/bookinfo/deploy.yaml"
+  kubectl -n $bookinfoNamespace apply -f "$script_dir/_20-istio/bookinfo/gateway.yaml"
 )
 s_log "Bookinfo example deployed"
 
 b_log "Deploying Linkerd example (emojivoto)"
 (
   show_cmds;
-  kubectl create ns emojivoto || true
-  kubectl label ns emojivoto istio-injection=enabled --overwrite
-  kubectl -n emojivoto apply -f "$script_dir/_emojivoto/deploy-emojivoto.yaml"
+  kubectl create ns $emojivotoNamespace || true
+  kubectl label ns $emojivotoNamespace istio-injection=enabled --overwrite
+  kubectl -n $emojivotoNamespace apply -f "$script_dir/_emojivoto/deploy-emojivoto.yaml"
 )
 s_log "Linkerd (emojivoto) deployed."
 
 b_log "Wait for deployments"
-
-kubectl wait --for=condition=available deploy -n bookinfo --all --timeout=30m
-kubectl wait --for=condition=available deploy -n emojivoto --all --timeout=30m
+(
+  show_cmds
+  kubectl wait --for=condition=available deploy -n $bookinfoNamespace --all --timeout=30m
+  kubectl wait --for=condition=available deploy -n $emojivotoNamespace --all --timeout=30m
+)
