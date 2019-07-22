@@ -1,33 +1,24 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: emojivoto
----
 kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: emoji
-  namespace: emojivoto
 ---
 kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: voting
-  namespace: emojivoto
 ---
 kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: web
-  namespace: emojivoto
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   creationTimestamp: null
   name: emoji
-  namespace: emojivoto
 spec:
   replicas: 1
   selector:
@@ -59,7 +50,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: emoji-svc
-  namespace: emojivoto
 spec:
   selector:
     app: emoji-svc
@@ -74,7 +64,6 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   name: voting
-  namespace: emojivoto
 spec:
   replicas: 1
   selector:
@@ -106,7 +95,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: voting-svc
-  namespace: emojivoto
 spec:
   selector:
     app: voting-svc
@@ -121,7 +109,6 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   name: web
-  namespace: emojivoto
 spec:
   replicas: 1
   selector:
@@ -159,7 +146,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web-svc
-  namespace: emojivoto
 spec:
   type: LoadBalancer
   selector:
@@ -174,7 +160,6 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   name: vote-bot
-  namespace: emojivoto
 spec:
   replicas: 1
   selector:
