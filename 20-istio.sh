@@ -28,6 +28,8 @@ b_log "Deploy istio"
   helm template \
     --set kiali.enabled=true \
     --set kiali.createDemoSecret=true \
+    --set grafana.enabled=true \
+    --set tracing.enabled=true \
     "$script_dir/_20-istio/istio-charts/istio" \
     --name istio --namespace istio-system | kubectl apply -f -
   kubectl wait --for=condition=available deploy -n istio-system --all --timeout=30m
