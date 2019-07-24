@@ -7,7 +7,17 @@
 - [Python](https://www.python.org/downloads/).
 - [Helm](https://helm.sh/docs/using_helm/#installing-helm).
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-- [Linkerd](https://linkerd.io/2/getting-started/).
+- [Linkerd](https://linkerd.io/2/getting-started/)
+- [Docker](https://hub.docker.com/editions/community/docker-ce-desktop-windows).
+
+# Running Locally.
+
+- Enable Kubernetes in Docker.
+   - Settings.
+   - Kubernetes.
+   - Enable Kubernetes and follow the installation steps (this will alter your `~/.kube/config`).
+- Check that you are not connected to the correct cluster.
+   - `kubectl get namespace`
 
 # Scripts.
 - `00-plain.sh` - Deploys Linkerd's example without a service mesh.
