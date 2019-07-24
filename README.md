@@ -7,9 +7,21 @@
 - [Python](https://www.python.org/downloads/).
 - [Helm](https://helm.sh/docs/using_helm/#installing-helm).
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-- [Linkerd](https://linkerd.io/2/getting-started/).
+- [Linkerd](https://linkerd.io/2/getting-started/)
+- [Docker](https://hub.docker.com/editions/community/docker-ce-desktop-windows).
+
+# Running Locally.
+
+- Enable Kubernetes in Docker.
+   - Settings.
+   - Kubernetes.
+   - Enable Kubernetes and follow the installation steps (this will alter your `~/.kube/config`).
+- Check that you are not connected to the correct cluster.
+   - `kubectl get namespace`
 
 # Scripts.
+- `setup/10-deploy-dashboard.sh` - Deploys the kubernetes dashboard into the cluster.
+   - `setup/open-dashboard.sh` Opens the Kubernetes dashboard.
 - `00-plain.sh` - Deploys Linkerd's example without a service mesh.
   - `_00-plain/open-emojivoto.sh` - Port forward the port for emojivoto and open a web browser.
    - `_00-plain/remove.sh` - Remove the deployment from the cluster.
