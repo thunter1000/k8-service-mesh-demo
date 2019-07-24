@@ -20,6 +20,8 @@
    - `kubectl get namespace`
 
 # Scripts.
+- `setup/10-deploy-dashboard.sh` - Deploys the kubernetes dashboard into the cluster.
+   - `setup/open-dashboard.sh` Opens the Kubernetes dashboard.
 - `00-plain.sh` - Deploys Linkerd's example without a service mesh.
   - `_00-plain/open-emojivoto.sh` - Port forward the port for emojivoto and open a web browser.
    - `_00-plain/remove.sh` - Remove the deployment from the cluster.
