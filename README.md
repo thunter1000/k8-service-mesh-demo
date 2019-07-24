@@ -7,7 +7,7 @@
 - [Python](https://www.python.org/downloads/).
 - [Helm](https://helm.sh/docs/using_helm/#installing-helm).
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-- [Linkerd](https://linkerd.io/2/getting-started/)
+- [Linkerd](https://linkerd.io/2/getting-started/).
 
 # Scripts.
 - `00-plain.sh` - Deploys Linkerd's example without a service mesh.
