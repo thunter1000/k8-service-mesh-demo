@@ -14,6 +14,7 @@ b_log "Deploying the dashboard"
 
 b_log "Patching the dashboard"
 (
+  # This should not be done in live clusters as it compromises security.
   show_cmds;
   kubectl patch deployments kubernetes-dashboard --patch "$(cat $script_dir/_10-deploy-dashboard/kube-dashboard-skip-login-patch.yaml)" -n kube-system
 )
