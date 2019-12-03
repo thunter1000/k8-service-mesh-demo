@@ -15,7 +15,7 @@ b_log "Creating 'istio-system' namespace"
 b_log "Configure istio service accounts"
 (
   show_cmds;
-  helm template "$script_dir/_20-istio/istio-charts/istio-init" --name istio-init --namespace istio-system | kubectl apply -f -
+  helm template "$script_dir/_20-istio/istio-charts/istio-init" --namespace istio-system | kubectl apply -f -
   kubectl wait --for=condition=complete job -n istio-system --all --timeout=30m
 )
 s_log "Istio service accounts created"
@@ -31,7 +31,7 @@ b_log "Deploy istio"
     --set grafana.enabled=true \
     --set tracing.enabled=true \
     "$script_dir/_20-istio/istio-charts/istio" \
-    --name istio --namespace istio-system | kubectl apply -f -
+    --namespace istio-system | kubectl apply -f -
   kubectl wait --for=condition=available deploy -n istio-system --all --timeout=30m
 )
 s_log "Istio has been deployed to the cluster"
