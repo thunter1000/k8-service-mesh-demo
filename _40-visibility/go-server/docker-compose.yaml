@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  web:
+    build:
+      context: .
+      labels:
+        go-server: ""
+    ports:
+      - "8080:8080"
