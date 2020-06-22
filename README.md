@@ -10,14 +10,25 @@
 - [Linkerd](https://linkerd.io/2/getting-started/)
 - [Docker](https://hub.docker.com/editions/community/docker-ce-desktop-windows).
 
+# ⚠️ This project will use the default Kubernetes cluster, make sure you are connected to the correct cluster.
+
+You can do this by doing the following **BEFORE** running any scripts :
+
+- Checking the context `kubectl config current-context`
+- Confirming the Namespaces `kubectl get namespaces`
+
+You can switch contexts by:
+
+- `kubectl config get-contexts`
+- `kubectl config use-context context-name`
+
 # Running Locally.
 
 - Enable Kubernetes in Docker.
    - Settings.
    - Kubernetes.
    - Enable Kubernetes and follow the installation steps (this will alter your `~/.kube/config`).
-- Check that you are not connected to the correct cluster.
-   - `kubectl get namespace`
+   - Make sure you are connected to the correct cluster.
 
 # Scripts.
 - `setup/10-deploy-dashboard.sh` - Deploys the kubernetes dashboard into the cluster.
